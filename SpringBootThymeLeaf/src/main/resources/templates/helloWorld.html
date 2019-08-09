@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel = "stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+	<head>
+		<title>Thymeleaf POC</title>
+	</head>
+	<body>
+		<br/>
+		Today is <span th:text="${session.today}"> </span>.
+		Just now: [(${#dates.createNow()})]
+		<br/>
+		<table>
+			<tr th:each="fruit: ${fruits}">
+				<td th:text="${fruit.name}" class="myclass"></td>
+				<td th:text="'$'+${#numbers.formatDecimal(fruit.cost, 1, 2)}"></td>
+				<td><a th:href="${fruit.url}"><img th:src="${fruit.url}"></img></a></td>
+				<td th:if="${fruit.cost < 0.5}">On Sale now!</td>
+			</tr>
+		</table>
+		<br/>
+		<a th:href="@{/helloWorld/newWorld}">Click here!</a>
+		<div th:insert="footer :: footerTemplate"></div>
+		
+	</body>
+</html>
